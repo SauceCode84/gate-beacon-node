@@ -1,4 +1,4 @@
-const bleno = require("bleno");
+const bleno = require("node_modules/bleno");
 const beacon = require("eddystone-beacon");
 
 let char = new bleno.Characteristic({
