@@ -12,6 +12,10 @@ let service = new bleno.PrimaryService({
   characteristics: [ char ]
 });
 
+bleno.on("stateChange", function(state) {
+  console.log("on -> stateChange: " + state);
+});
+
 bleno.once("advertisingStart", function (err) {
   if (err) {
     throw err;
