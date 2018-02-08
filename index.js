@@ -12,7 +12,7 @@ let service = new bleno.PrimaryService({
   characteristics: [ char ]
 });
 
-bleno.once("advertisingStart", (err) => {
+bleno.once("advertisingStart", function (err) {
   if (err) {
     throw err;
   }
