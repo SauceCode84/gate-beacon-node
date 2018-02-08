@@ -9,7 +9,7 @@ let char = new bleno.Characteristic({
 
 let service = new bleno.PrimaryService({
   uuid: 'E0D38F1C-56CA-4B75-9D44-3E4134F7CB0A',
-  characteristics: [ characteristic ]
+  characteristics: [ char ]
 });
 
 bleno.once("advertisingStart", (err) => {
