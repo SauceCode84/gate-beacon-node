@@ -2,17 +2,17 @@ const bleno = require("./node_modules/eddystone-beacon/node_modules/bleno");
 const beacon = require("eddystone-beacon");
 
 let char = new bleno.Characteristic({
-  uuid: "E0D38F1C-56CA-4B75-9D44-3E4134F7CB0B",
+  uuid: "e0d38f1c56ca4b759d443e4134f7cb0b",
   properties: ["read"],
   value: new Buffer("example")
 });
 
 let service = new bleno.PrimaryService({
-  uuid: "E0D38F1C-56CA-4B75-9D44-3E4134F7CB0A",
+  uuid: "e0d38f1c56ca4b759d443e4134f7cb0a",
   characteristics: [ char ]
 });
 
-bleno.on("stateChange", function(state) {
+bleno.on("stateChange", function (state) {
   console.log("on -> stateChange: " + state);
 });
 
