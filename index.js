@@ -22,5 +22,4 @@ bleno.once("advertisingStart", function (err) {
   bleno.setServices([ service ]);
 });
 
-beacon.advertiseUrl("https://goo.gl/G166Vb", { name: "Visitors Gate" });
-//beacon.advertiseUrl("https://goo.gl/pheJrb");
+beacon.advertiseUrl("https://goo.gl/pheJrb", { name: "Visitors Gate" });
