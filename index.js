@@ -1,10 +1,16 @@
 const bleno = require("./node_modules/eddystone-beacon/node_modules/bleno");
 const beacon = require("eddystone-beacon");
 
+let desc = new bleno.Descriptor({
+  uuid: "2901",
+  value: "Description"
+});
+
 let char = new bleno.Characteristic({
   uuid: "e0d38f1c56ca4b759d443e4134f7cb0b",
   properties: ["read"],
-  value: new Buffer("example")
+  value: new Buffer("example"),
+  descriptors: [ desc ]
 });
 
 let service = new bleno.PrimaryService({
