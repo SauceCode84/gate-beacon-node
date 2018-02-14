@@ -13,6 +13,26 @@ let char = new bleno.Characteristic({
   descriptors: [ desc ]
 });
 
+let validateChar = new bleno.Characteristic({
+  uuid: "e0d38f1c56ca4b759d443e4134f7cb0c",
+  properties: ["read", "write"],
+  value: null,
+  onWriteRequest: function(data, offset, withoutResponse, callback) {
+    console.log("validateChar.onWriteRequest");
+
+    if (offset) {
+      callback(this.RESULT_ATTR_NOT_LONG);
+    } else if (data.length !== 1) {
+      callback(this.RESULT_INVALID_ATTRIBUTE_LENGTH);
+    } else {
+      let value = data.readUInt8(0);
+      console.log(value);
+
+      callback(this.RESULT_SUCCESS);
+    }
+  }
+});
+
 let service = new bleno.PrimaryService({
   uuid: "e0d38f1c56ca4b759d443e4134f7cb0a",
   characteristics: [ char ]
