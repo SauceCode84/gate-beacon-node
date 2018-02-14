@@ -25,18 +25,17 @@ let validateChar = new bleno.Characteristic({
     } else if (data.length !== 1) {
       callback(this.RESULT_INVALID_ATTRIBUTE_LENGTH);
     } else {
-      this.userId = data.readUInt8(0);
+      this.userId = data;
       callback(this.RESULT_SUCCESS);
     }
   },
   onReadRequest: function(offset, callback) {
     console.log("validateChar.onReadRequest");
-    
+
     if (offset) {
       callback(this.RESULT_ATTR_NOT_LONG, null);
     } else {
-      let data = new Buffer(1);
-      data.writeUInt8(this.userId, 0);
+      let data = new Buffer(this.userId);
       console.log("data", data);
 
       callback(this.RESULT_SUCCESS, data);
