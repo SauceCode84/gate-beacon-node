@@ -19,6 +19,7 @@ let validateChar = new bleno.Characteristic({
   value: null,
   onWriteRequest: function(data, offset, withoutResponse, callback) {
     console.log("validateChar.onWriteRequest");
+    console.log("data", data);
 
     if (offset) {
       callback(this.RESULT_ATTR_NOT_LONG);
@@ -26,8 +27,6 @@ let validateChar = new bleno.Characteristic({
       callback(this.RESULT_INVALID_ATTRIBUTE_LENGTH);
     } else {
       this.value = data.readUInt8(0);
-      console.log(value);
-
       callback(this.RESULT_SUCCESS);
     }
   }
