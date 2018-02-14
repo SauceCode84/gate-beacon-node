@@ -35,9 +35,13 @@ let validateChar = new bleno.Characteristic({
     if (offset) {
       callback(this.RESULT_ATTR_NOT_LONG, null);
     } else {
-      let data = new Buffer(this.userId);
+      let data = null;
+      
+      if (this.userId) {
+        data = new Buffer(this.userId);
+      }
+      
       console.log("data", data);
-
       callback(this.RESULT_SUCCESS, data);
     }
   }
