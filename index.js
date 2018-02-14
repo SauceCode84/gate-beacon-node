@@ -22,7 +22,7 @@ let validateChar = new bleno.Characteristic({
 
     if (offset) {
       callback(this.RESULT_ATTR_NOT_LONG);
-    } else if (data.length !== 1) {
+    } else if (data.length !== 8) {
       callback(this.RESULT_INVALID_ATTRIBUTE_LENGTH);
     } else {
       this.userId = data;
