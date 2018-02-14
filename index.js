@@ -37,7 +37,7 @@ let validateChar = new bleno.Characteristic({
     } else {
       let data = this.userId;
 
-      if (!data.length) {
+      if (!data || !data.length) {
         data = new Buffer("");
       }
       
