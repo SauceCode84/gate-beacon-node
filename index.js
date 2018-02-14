@@ -58,7 +58,11 @@ let validateChar = new bleno.Characteristic({
 const accessCallback = (callback) => (value) => {
   if (callback) {
     console.log(`callback(${value})`);
-    callback(value ? 0x01 : 0x00);
+    
+    let data = new Buffer(1);
+    data.writeUInt8(value ? 0x01 : 0x00);
+
+    callback(data);
   }
 }
 
