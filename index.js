@@ -35,10 +35,10 @@ let validateChar = new bleno.Characteristic({
     if (offset) {
       callback(this.RESULT_ATTR_NOT_LONG, null);
     } else {
-      let data = null;
+      let data = new Buffer();
       
       if (this.userId) {
-        data = new Buffer(this.userId);
+        data.write(this.userId, 0);
       }
       
       console.log("data", data);
