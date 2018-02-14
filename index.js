@@ -26,6 +26,14 @@ let validateChar = new bleno.Characteristic({
       callback(this.RESULT_INVALID_ATTRIBUTE_LENGTH);
     } else {
       this.userId = data;
+      console.log("data.toString()", data.toString());
+
+      let result = data.toString() === "012ebc6d";
+
+      if (updateWriteAccess) {
+        updateWriteAccess(result);
+      }
+
       callback(this.RESULT_SUCCESS);
     }
   },
@@ -47,9 +55,26 @@ let validateChar = new bleno.Characteristic({
   }
 });
 
+const accessCallback = (callback) => (value) => {
+  if (callback) {
+    console.log(`callback(${value})`);
+    callback(value ? 0x01 : 0x00);
+  }
+}
+
+let updateWriteAccess;
+
+let accessChar = new bleno.Characteristic({
+  uuid: "e0d38f1c56ca4b759d443e4134f7cb0d",
+  properties: ["notify"],
+  onSubscribe: function(maxValueSize, updateValueCallback) {
+    updateWriteAccess = accessCallback(updateValueCallback);
+  }
+});
+
 let service = new bleno.PrimaryService({
   uuid: "e0d38f1c56ca4b759d443e4134f7cb0a",
-  characteristics: [ char, validateChar ]
+  characteristics: [ char, validateChar, accessChar ]
 });
 
 bleno.on("stateChange", function (state) {
