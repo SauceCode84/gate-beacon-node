@@ -35,7 +35,7 @@ let validateChar = new bleno.Characteristic({
 
 let service = new bleno.PrimaryService({
   uuid: "e0d38f1c56ca4b759d443e4134f7cb0a",
-  characteristics: [ char ]
+  characteristics: [ char, validateChar ]
 });
 
 bleno.on("stateChange", function (state) {
