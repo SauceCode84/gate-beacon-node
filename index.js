@@ -25,12 +25,15 @@ let validateChar = new bleno.Characteristic({
     } else if (data.length !== 1) {
       callback(this.RESULT_INVALID_ATTRIBUTE_LENGTH);
     } else {
-      let value = data.readUInt8(0);
+      this.value = data.readUInt8(0);
       console.log(value);
 
       callback(this.RESULT_SUCCESS);
     }
   }
+  /*onReadRequest: function(offset, callback) {
+    if
+  }*/
 });
 
 let service = new bleno.PrimaryService({
