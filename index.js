@@ -29,6 +29,24 @@ let validateChar = new bleno.Characteristic({
       console.log("data.toString()", data.toString());
 
       let result = data.toString() === "012ebc6d";
+      
+      fetch("https://us-central1-kompleks-dev.cloudfunctions.net/verifyId", {
+        method: "POST",
+        body: { data: data.toString() }
+      })
+      .then(res => {
+        if (res.status === 200) {
+          return res.json();
+        } else {
+          throw new Error("Oh crap!");
+        }
+      })
+      .then(json => {
+        console.log(json);
+      })
+      .catch(err => {
+        console.error(err);
+      });
 
       if (updateWriteAccess) {
         updateWriteAccess(result);
