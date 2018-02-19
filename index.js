@@ -43,16 +43,22 @@ let validateChar = new bleno.Characteristic({
       })
       .then(json => {
         console.log(json);
+
+        if (updateWriteAccess) {
+          updateWriteAccess(json.result);
+        }
+
+        callback(this.RESULT_SUCCESS);
       })
       .catch(err => {
         console.error(err);
+
+        if (updateWriteAccess) {
+          updateWriteAccess(false);
+        }
+
+        callback(this.RESULT_SUCCESS);
       });
-
-      if (updateWriteAccess) {
-        updateWriteAccess(result);
-      }
-
-      callback(this.RESULT_SUCCESS);
     }
   },
   onReadRequest: function(offset, callback) {
