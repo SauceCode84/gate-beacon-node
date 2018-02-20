@@ -1,7 +1,7 @@
-import fetch from "node-fetch";
-
 const bleno = require("./node_modules/eddystone-beacon/node_modules/bleno");
 const beacon = require("eddystone-beacon");
+
+const fetch = require("node-fetch");
 
 let desc = new bleno.Descriptor({
   uuid: "2901",
