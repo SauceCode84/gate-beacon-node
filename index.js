@@ -38,7 +38,8 @@ let validateChar = new bleno.Characteristic({
 
       fetch("https://us-central1-kompleks-dev.cloudfunctions.net/verifyId", {
         method: "POST",
-        body: JSON.stringify(body)
+        body: JSON.stringify(body),
+        headers: { "Content-Type": "application/json" }
       })
       .then(res => {
         console.log("fetch resolved...", res);
