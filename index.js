@@ -31,10 +31,10 @@ let validateChar = new bleno.Characteristic({
       console.log("data.toString()", data.toString());
 
       let result = data.toString() === "012ebc6d";
+      let body = { data: data.toString() };
       
       console.log("fetch()...");
-      
-      let body = { data: data.toString() };
+      console.log("body", body);
 
       fetch("https://us-central1-kompleks-dev.cloudfunctions.net/verifyId", {
         method: "POST",
