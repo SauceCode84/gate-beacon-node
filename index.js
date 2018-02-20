@@ -33,10 +33,12 @@ let validateChar = new bleno.Characteristic({
       let result = data.toString() === "012ebc6d";
       
       console.log("fetch()...");
+      
+      let body = { data: data.toString() };
 
       fetch("https://us-central1-kompleks-dev.cloudfunctions.net/verifyId", {
         method: "POST",
-        body: { data: data.toString() }
+        body: JSON.stringify(body)
       })
       .then(res => {
         console.log("fetch resolved...", res);
